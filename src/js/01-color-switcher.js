@@ -14,10 +14,10 @@ startBtn.addEventListener('click', () => {
   }, 1000);
   });
   
-  stopBtn.addEventListener('click', () => {
-    clearInterval(colorTimer);
-    startBtn.disabled = false;
-  });
+stopBtn.addEventListener('click', () => {
+  clearInterval(colorTimer);
+  startBtn.disabled = false;
+});
 
  
 function getRandomHexColor() {

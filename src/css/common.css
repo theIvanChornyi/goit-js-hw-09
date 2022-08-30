@@ -16,3 +16,34 @@ img {
   display: block;
   max-width: 100%;
 }
+
+#datetime-picker{
+  display: block  ;
+  margin: 0 auto;
+  padding: 10px;
+
+  border-radius: 5px;
+  text-align: center;
+}
+button[data-start]{
+  display: block;
+  margin: 30px auto;
+  padding: 10px;
+
+  border-radius: 5px;
+  text-align: center;
+}
+
+.timer {
+  display: grid;
+  grid-template: 1fr/ repeat(4, 1fr);
+  justify-items: center;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.field {}
+
+.value {}
+
+.label {}
