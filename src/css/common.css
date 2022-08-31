@@ -32,6 +32,17 @@ button[data-start]{
 
   border-radius: 5px;
   text-align: center;
+  cursor: pointer;
+}
+
+button[data-start]:hover,
+button[data-start]:focus{
+ box-shadow: 1px 1px 1px; 
+}
+
+button[data-start][disabled]:hover,
+button[data-start][disabled]:focus {
+  box-shadow: 0px 0px 0px;
 }
 
 .timer {
@@ -41,9 +52,3 @@ button[data-start]{
   font-size: 30px;
   margin-top: 30px;
 }
-
-.field {}
-
-.value {}
-
-.label {}
