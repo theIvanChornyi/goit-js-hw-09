@@ -7,10 +7,12 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const timerStartBtn = document.querySelector('button[data-start]');
 const calendarInput = document.querySelector('#datetime-picker');
+
 const timerDays = document.querySelector('span[data-days]');
 const timerHours = document.querySelector('span[data-hours]');
 const timeMinutes = document.querySelector('span[data-minutes]');
 const timerseconds = document.querySelector('span[data-seconds]');
+
 
 let myCalendar = flatpickr("#datetime-picker", {
   enableTime: true,
@@ -33,22 +35,29 @@ let myCalendar = flatpickr("#datetime-picker", {
 timerStartBtn.addEventListener('click', ()=> coundown(myCalendar.selectedDates[0] - new Date()));
 
 function coundown(time) {
-  timerStartBtn.disabled = true;
-  calendarInput.disabled = true;
+  switchInpDisable(true);
 
-  const coundownTimer =  setInterval(() => {
+  const coundownTimer = setInterval(() => {
     time -= 1000;
+
     let coundownData = convertMs(time);
+    updateTimerElems(coundownData);
 
-    timerDays.textContent = coundownData.days;
-    timerHours.textContent = coundownData.hours;
-    timeMinutes.textContent = coundownData.minutes;
-    timerseconds.textContent = coundownData.seconds;
-
-    if (time < 999) { clearInterval(coundownTimer); }
+    if (time < 999) {
+      clearInterval(coundownTimer);
+      switchInpDisable(false);
+    }
       
   }, 1000); 
 }
+
+function updateTimerElems(delay) {
+  timerDays.textContent = delay.days;
+  timerHours.textContent = delay.hours;
+  timeMinutes.textContent = delay.minutes;
+  timerseconds.textContent = delay.seconds;
+}
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -67,6 +76,14 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
+
+function switchInpDisable(value) {
+  timerStartBtn.disabled = value;
+  calendarInput.disabled = value;
+}
+
+
